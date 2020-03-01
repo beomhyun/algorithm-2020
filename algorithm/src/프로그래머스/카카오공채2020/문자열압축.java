@@ -13,17 +13,17 @@ public class 문자열압축 {
         	int rear = i;
         	StringBuilder tempString1 = new StringBuilder(sb.substring(front, rear));
         	front += i;
-        	int count = 0;
+        	int count = 1;
         	while(front < sb.length()) {
         		rear = front +i <= sb.length() ? front+i : sb.length();
             	StringBuilder tempString2 = new StringBuilder(sb.substring(front, rear));
             	
             	if(tempString1.toString().equals(tempString2.toString())) {
             		count++;               	
-            	}else if(count != 0) {
-            		length -= count*i;
-            		length += (""+count).length();
-            		count = 0;
+            	}else if(count != 1) {
+            		length -= count * i;
+            		length += ("" + count).length();
+            		count = 1;
             	}
         		tempString1 = new StringBuilder(tempString2.toString());
             	front += i;
@@ -31,7 +31,7 @@ public class 문자열압축 {
         	 if(count != 0) {
          		length -= count*i;
          		length += (""+count).length();
-         		count = 0;
+         		count = 1;
          	}
         	answer = answer < length ? answer : length;
         }
