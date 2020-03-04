@@ -6,6 +6,7 @@ public class °ýÈ£º¯È¯ {
 	public static void main(String[] args) {
 		System.out.println(solution("))((()"));
 	}
+	
 	public static String solution(String p) {
 		if (p.length() == 0)
 			return "";
