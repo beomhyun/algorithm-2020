@@ -9,19 +9,19 @@ public class 가사검색 {
 	}
 
 	public static int[] solution(String[] words, String[] queries) {
-		
+
 		int[] answer = new int[queries.length];
 		for (int i = 0; i < answer.length; i++) {
 			int count = 0;
 			int length = queries[i].length();
 			int frontIndex = 0;
 			int rearIndex = 0;
-			
+
 			if (queries[i].charAt(0) == '?') {
 				for (int j = 0; j < length; j++) {
 					if (queries[i].charAt(j) != '?') {
 						frontIndex = j;
-						rearIndex =length;
+						rearIndex = length;
 						break;
 					}
 				}
@@ -36,7 +36,7 @@ public class 가사검색 {
 			}
 			String tempString = queries[i].substring(frontIndex, rearIndex);
 			for (int j = 0; j < words.length; j++) {
-				if(words[j].length() == length && words[j].substring(frontIndex, rearIndex).equals(tempString)) {
+				if (words[j].length() == length && words[j].substring(frontIndex, rearIndex).equals(tempString)) {
 					count++;
 				}
 			}
