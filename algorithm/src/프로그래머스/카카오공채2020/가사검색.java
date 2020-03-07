@@ -40,7 +40,6 @@ public class 가사검색 {
 				}
 			}
 		}
-		
 		Trie rootReverse = new Trie('*');
 		for (int i = 0; i < words.length; i++) {
 			String word = words[i];
