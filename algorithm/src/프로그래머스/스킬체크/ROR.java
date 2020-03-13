@@ -44,6 +44,7 @@ public class ROR {
 					&& maps[x + dx[i]][y + dy[i]] == 1 && !visit[x + dx[i]][y + dy[i]]) {
 				visit[x][y] = true;
 				dfs(new xy(x + dx[i], y + dy[i]), maps, visit, count + 1);
+				visit[x][y] = false;
 			}
 		}
 	}
