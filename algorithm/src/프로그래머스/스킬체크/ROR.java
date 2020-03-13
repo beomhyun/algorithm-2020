@@ -1,11 +1,11 @@
 package 프로그래머스.스킬체크;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class ROR {
 	static int[] dx = { 0, 1, 0, -1 };
 	static int[] dy = { 1, 0, -1, 0 };
-
-	static int answer;
-	static xy destination;
 
 	public static void main(String[] args) {
 		ROR ror = new ROR();
@@ -16,37 +16,32 @@ public class ROR {
 	}
 
 	public int solution(int[][] maps) {
-		answer = -1;
-		boolean[][] visit = new boolean[maps.length][maps[0].length];
-		destination = new xy(0, 0);
-		dfs(new xy(maps.length - 1, maps[0].length - 1), maps, visit, 1);
-		return answer;
-	}
+		int answer = -1;
+		int n = maps.length;
+		int m = maps[0].length;
 
-	static void dfs(xy now, int[][] maps, boolean[][] visit, int count) {
-		System.out.println(now + " " + count);
-		if (answer != -1 && answer <= count)
-			return;
-		if (now.x == destination.x && now.y == destination.y) {
-			System.out.println("!");
-			if (answer == -1)
-				answer = count;
-			else
-				answer = answer > count ? count : answer;
-			return;
-		}
-
-		int x = now.getX();
-		int y = now.getY();
-
-		for (int i = 0; i < 4; i++) {
-			if (x + dx[i] >= 0 && x + dx[i] < maps.length && y + dy[i] >= 0 && y + dy[i] < maps[0].length
-					&& maps[x + dx[i]][y + dy[i]] == 1 && !visit[x + dx[i]][y + dy[i]]) {
-				visit[x][y] = true;
-				dfs(new xy(x + dx[i], y + dy[i]), maps, visit, count + 1);
-				visit[x][y] = false;
+		int[][] visit = new int[n][m];
+		visit[0][0] = 1;
+		Queue<xy> que = new LinkedList<xy>();
+		que.add(new xy(0, 0));
+		while (!que.isEmpty()) {
+			xy xy = que.poll();
+			int nowX = xy.getX();
+			int nowY = xy.getY();
+			if (nowX == n - 1 && nowY == m - 1) {
+				answer = visit[nowX][nowY];
+				break;
+			}
+			for (int i = 0; i < dx.length; i++) {
+				int x = nowX + dx[i];
+				int y = nowY + dy[i];
+				if (x >= 0 && y >= 0 && x < n && y < m && maps[x][y] == 1 && visit[x][y] == 0) {
+					visit[x][y] = visit[nowX][nowY] + 1;
+					que.add(new xy(x, y));
+				}
 			}
 		}
+		return answer;
 	}
 
 	static class xy {
