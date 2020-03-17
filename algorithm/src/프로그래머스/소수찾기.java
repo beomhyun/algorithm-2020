@@ -8,6 +8,7 @@ public class 소수찾기 {
 			int j = 2;
 			while(i*j <= n) {
 				isPrimeNumber[i*j] = true;
+				j++;
 			}
 		}
 		int answer = 0;
