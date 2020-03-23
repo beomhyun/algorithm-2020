@@ -1,9 +1,14 @@
 package 프로그래머스.카카오공채2020;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
 public class 문자열압축 {
 	public static void main(String[] args) {
 		System.out.println(solution("a"));
 	}
+	
     public static int solution(String s) {
     	StringBuilder sb = new StringBuilder(s);
         int answer = sb.length();
