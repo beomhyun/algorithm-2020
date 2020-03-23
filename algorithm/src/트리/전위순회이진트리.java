@@ -9,13 +9,37 @@ public class 전위순회이진트리 {
 		list.add(1);
 		list.add(3);
 		list.add(4);
-		list.add(2);
-		
-		solution(list);
+
+		System.out.println(solution(list));
 	}
+
 	public static boolean solution(List<Integer> list) {
-		//루트 -> 왼쪽(루트보다작음) -> 오른쪽(루트보다 큼)
-		
-		return false;
+		if (list.size() == 0)
+			return true;
+		int root = list.get(0);
+		int leftEnd = 0;
+
+		for (int i = 1; i < list.size(); i++) {
+			if (list.get(i) > root) {
+				leftEnd = i - 1;
+				break;
+			}
+		}
+
+		for (int i = leftEnd + 1; i < list.size(); i++) {
+			if (list.get(i) < root)
+				return false;
+		}
+		List<Integer> left = new ArrayList<Integer>();
+		List<Integer> right = new ArrayList<Integer>();
+
+		for (int i = 1; i < leftEnd; i++) {
+			left.add(list.get(i));
+		}
+		for (int i = leftEnd + 1; i < list.size(); i++) {
+			right.add(list.get(i));
+		}
+
+		return (solution(left) & solution(right));
 	}
 }
