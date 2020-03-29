@@ -11,11 +11,11 @@ public class Main {
 
 		StringBuilder str = new StringBuilder(sc.next());
 
-		int answer = 0;
+		long answer = 0;
 
 		for (int i = 0; i <= N - K; i++) {
 			StringBuilder s = new StringBuilder(str.substring(i, i + K));
-			int tmp = Integer.parseInt(s.toString());
+			long tmp = Integer.parseInt(s.toString());
 			if (tmp > answer) {
 				answer = tmp;
 			}
