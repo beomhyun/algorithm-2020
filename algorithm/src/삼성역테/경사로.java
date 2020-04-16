@@ -1,4 +1,4 @@
-package 백준;
+package 삼성역테;
 
 import java.io.BufferedReader;
 import java.io.IOException;
