@@ -1,19 +1,28 @@
 package 프로그래머스.DP;
 
 public class N으로표현 {
-	public long solution(int N, int number) {
-		long[] tile = new long[N];
-		tile[0] = 1;
-		tile[1] = 1;
+    static	int answer = -1;
+    public int solution(int N, int number) {
+        dfs(N, 0, 0, number, "");
+        return answer;
+    }
 
-		long[] round = new long[N];
-		round[0] = 4;
-		round[1] = 6;
-
-		for (int i = 2; i < N; i++) {
-			tile[i] = tile[i - 2] + tile[i - 1];
-			round[i] = tile[i] * 4 + tile[i - 1] * 2;
-		}
-		return round[N - 1];
-	}
+    public void dfs(int n, int pos, int num, int number, String s) {
+        if (pos > 8)
+            return;
+        if (num == number) {
+            if (pos < answer || answer == -1) {
+                answer = pos;
+            }
+            return;
+        }
+        int nn=0;
+        for (int i = 0; i < 8; i++) {
+            nn=nn*10+n;
+            dfs(n, pos + 1+i, num + nn, number, s + "+");
+            dfs(n, pos + 1+i, num - nn, number, s + "-");
+            dfs(n, pos + 1+i, num * nn, number, s + "*");
+            dfs(n, pos + 1+i, num / nn, number, s + "/");
+        }
+    }
 }
