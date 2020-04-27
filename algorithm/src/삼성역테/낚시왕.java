@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class ¿Ö½Ã°£ÃÊ°ú_³¬½Ã¿Õ {
+public class ³¬½Ã¿Õ {
 	static int[] dx = { -1, 1, 0, 0 };
 	static int[] dy = { 0, 0, 1, -1 };
 	static int[] change = { 1, 0, 3, 2 };
@@ -59,11 +59,17 @@ public class ¿Ö½Ã°£ÃÊ°ú_³¬½Ã¿Õ {
 				map[nr][nc] = 0;
 
 				for (int j = 0; j < move; j++) {
-					if (!isRange(nr + dx[d], nc + dy[d], R, C)) {
-						d = change[d];
-					}
 					nr += dx[d];
 					nc += dy[d];
+
+					if (!isRange(nr, nc, R, C)) {
+						nr -= dx[d];
+						nc -= dy[d];
+
+						d = change[d];
+
+						j--;
+					}
 				}
 				sharks[i].r = nr;
 				sharks[i].c = nc;
